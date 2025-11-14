@@ -6,7 +6,7 @@ if (!CMS_URL) {
   );
 }
 
-export async function cmsFetch<T = any>(
+export async function cmsFetch<T = unknown>(
   path: string,
   options: RequestInit = {}
 ): Promise<T> {

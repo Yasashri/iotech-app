@@ -1,6 +1,6 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { ReduxProvider } from "@/store";
+import ReduxProvider from "@/app/components/providers/ReduxProvider";
 
 export const metadata: Metadata = {
   title: "IO-TEC Task",
