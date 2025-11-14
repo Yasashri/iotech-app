@@ -13,8 +13,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className="text-white bg-background">
+    <html lang="en" suppressHydrationWarning>
+      <body className="text-white bg-background" suppressHydrationWarning>
         <ReduxProvider>{children}</ReduxProvider>
       </body>
     </html>

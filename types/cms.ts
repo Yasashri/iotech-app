@@ -6,16 +6,35 @@ export interface StrapiImage {
   };
 }
 
-export interface HeroSlide {
+export type HeroSlide = {
   id: number;
-  attributes: {
-    title: string;
-    subtitle?: string;
-    backgroundImage?: StrapiImage;
-    ctaLabel?: string;
-    ctaLink?: string;
+  documentId: string;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+  locale: string;
+  title: string;
+  subtitle?: string;
+  ctaLabel?: string;
+  ctaLink?: string;
+  backgroundImage?: {
+    id: number;
+    documentId: string;
+    name: string;
+    alternativeText?: string;
+    caption?: string;
+    width: number;
+    height: number;
+    url: string;
+    formats?: {
+      thumbnail?: { url: string; width: number; height: number };
+      small?: { url: string; width: number; height: number };
+      medium?: { url: string; width: number; height: number };
+      large?: { url: string; width: number; height: number };
+    };
   };
-}
+};
+
 
 export interface TeamMember {
   id: number;
@@ -36,11 +55,9 @@ export interface Client {
 
 export interface Service {
   id: number;
-  attributes: {
     title: string;
     slug: string;
     shortDescription?: string;
     content?: string;
     heroImage?: StrapiImage;
-  };
 }

@@ -4,16 +4,17 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux";
-import { toggleServicesDropdown } from "@/store/slices/uiSlice";
+import {
+  toggleServicesDropdown,
+  closeServicesDropdown,
+} from "@/store/slices/uiSlice";
 import { cmsFetch } from "@/lib/cmsClient";
 import type { Locale } from "@/store/slices/languageSlice";
 
 interface ServiceItem {
   id: number;
-  attributes: {
-    title: string;
-    slug: string;
-  };
+  title?: string;
+  slug?: string;
 }
 
 interface Props {
@@ -27,41 +28,71 @@ export default function ServicesDropdown({ locale }: Props) {
   const [services, setServices] = useState<ServiceItem[]>([]);
 
   useEffect(() => {
-    (async () => {
+    let cancelled = false;
+
+    async function loadServices() {
       try {
         const data = await cmsFetch<{ data: ServiceItem[] }>(
-          `/api/services?locale=${locale}`
+          // ask explicitly for title + slug; or remove fields filter entirely
+          `/api/services?locale=${locale}&fields[0]=title&fields[1]=slug&pagination[pageSize]=100`
         );
-        setServices(data.data || []);
+        if (!cancelled) {
+          setServices(data.data || []);
+          console.log("Services for dropdown:", data.data);
+        }
       } catch (e) {
-        console.error(e);
+        console.error("Failed to load services:", e);
+        if (!cancelled) setServices([]);
       }
-    })();
+    }
+
+    loadServices();
+    return () => {
+      cancelled = true;
+    };
   }, [locale]);
 
   return (
-    <div className="relative">
+    <div
+      className='relative'
+      onMouseEnter={() => {
+        if (!isOpen) dispatch(toggleServicesDropdown());
+      }}
+      onMouseLeave={() => {
+        dispatch(closeServicesDropdown());
+      }}
+    >
       <button
-        type="button"
-        onClick={() => dispatch(toggleServicesDropdown())}
-        className="text-sm hover:text-brown-400"
+        type='button'
+        className='text-sm hover:text-brown-400'
       >
         {t("nav.services")}
       </button>
+
       {isOpen && (
-        <div className="absolute left-0 z-40 w-56 mt-2 text-sm rounded shadow-lg bg-brown-700">
-          <ul className="py-2">
-            {services.map((s) => (
-              <li key={s.id}>
-                <Link
-                  href={`/${locale}/services/${s.attributes.slug}`}
-                  className="block px-3 py-2 hover:bg-brown-600"
-                >
-                  {s.attributes.title}
-                </Link>
-              </li>
-            ))}
-          </ul>
+        <div className='absolute left-0 z-40 w-56 pt-2'>
+          <div className='text-sm rounded shadow-lg bg-brown-700'>
+            <ul className='py-2 overflow-auto max-h-80'>
+              {services
+                .filter((s) => !!s?.slug)
+                .map((s) => (
+                  <li key={s.id}>
+                    <Link
+                      href={`/${locale}/services/${s!.slug}`}
+                      className='block px-3 py-2 hover:bg-brown-600'
+                    >
+                      {s?.title ?? s?.slug}
+                    </Link>
+                  </li>
+                ))}
+
+              {services.length === 0 && (
+                <li className='px-3 py-2 text-xs text-gray-200'>
+                  No services configured.
+                </li>
+              )}
+            </ul>
+          </div>
         </div>
       )}
     </div>
