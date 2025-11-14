@@ -1,4 +1,5 @@
 import type { TeamMember } from "@/types/cms";
+import Image from "next/image";
 
 interface Props {
   members: TeamMember[];
@@ -20,7 +21,7 @@ export default function TeamSection({ members }: Props) {
             >
               <div className="w-20 h-20 mb-3 overflow-hidden rounded-full">
                 {img && (
-                  <img
+                  <Image
                     src={img}
                     alt={m.attributes.name}
                     className="object-cover w-full h-full"
