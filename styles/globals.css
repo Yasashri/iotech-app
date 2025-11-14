@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+body {
+  @apply bg-background text-white;
+}
+
+/* Basic RTL helper if needed */
+[dir="rtl"] {
+  direction: rtl;
+}

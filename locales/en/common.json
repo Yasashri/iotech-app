@@ -1,0 +1,12 @@
+{
+  "nav.home": "Home",
+  "nav.services": "Services",
+  "nav.team": "Our Team",
+  "nav.clients": "Clients",
+  "nav.searchPlaceholder": "Search...",
+  "hero.readMore": "Read more",
+  "footer.subscribe": "Subscribe",
+  "footer.emailPlaceholder": "Enter your email",
+  "footer.success": "Subscribed successfully.",
+  "footer.error": "This email is already subscribed or an error occurred."
+}

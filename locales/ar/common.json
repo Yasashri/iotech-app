@@ -1,0 +1,12 @@
+{
+  "nav.home": "الرئيسية",
+  "nav.services": "الخدمات",
+  "nav.team": "فريقنا",
+  "nav.clients": "عملاؤنا",
+  "nav.searchPlaceholder": "ابحث...",
+  "hero.readMore": "اقرأ المزيد",
+  "footer.subscribe": "اشترك",
+  "footer.emailPlaceholder": "أدخل بريدك الإلكتروني",
+  "footer.success": "تم الاشتراك بنجاح.",
+  "footer.error": "هذا البريد مشترك بالفعل أو حدث خطأ."
+}
