@@ -1,8 +1,6 @@
 export interface StrapiImage {
   data?: {
-    attributes?: {
-      url: string;
-    };
+    url: string;
   };
 }
 
@@ -35,22 +33,21 @@ export type HeroSlide = {
   };
 };
 
-
 export interface TeamMember {
   id: number;
-  attributes: {
-    name: string;
-    role: string;
-    image?: StrapiImage;
+  name: string;
+  role: string;
+  Image?: {
+    id: number;
+    url: string;
   };
 }
 
 export interface Client {
   id: number;
-  attributes: {
-    name: string;
-    logo?: StrapiImage;
-  };
+  name: string;
+  testimonial: string;
+  logo?: StrapiImage;
 }
 
 export interface Service {
