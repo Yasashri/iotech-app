@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux";
-import { toggleSearch } from "@/store/slices/uiSlice";
+import { toggleSearch, toggleMobileMenu, closeMobileMenu } from "@/store/slices/uiSlice";
 import type { Locale } from "@/store/slices/languageSlice";
 import LanguageToggle from "../features/navbar/LanguageToggle";
 import ServicesDropdown from "../features/navbar/ServicesDropDown";
@@ -19,6 +19,7 @@ export default function NavBar({ locale }: NavBarProps) {
   const router = useRouter();
   const pathname = usePathname();
   const isSearchOpen = useAppSelector((s) => s.ui.isSearchOpen);
+  const isMobileMenuOpen = useAppSelector((s) => s.ui.isMobileMenuOpen);
 
   const handleSearch = (formData: FormData) => {
     const q = formData.get("q")?.toString() ?? "";
@@ -27,8 +28,12 @@ export default function NavBar({ locale }: NavBarProps) {
     dispatch(toggleSearch());
   };
 
+  const handleLinkClick = () => {
+    dispatch(closeMobileMenu());
+  };
+
   return (
-    <header className="sticky top-0 z-50 border-b bg-surface/90 backdrop-blur border-brown-700">
+    <header className="sticky top-0 z-50 text-white border-b backdrop-blur border-brown-700 bg-background-brown">
       <div className="flex items-center justify-between max-w-6xl gap-4 px-4 py-3 mx-auto">
         <Link href={`/${locale}`} className="text-lg font-semibold">
           IO-TEC
@@ -51,6 +56,14 @@ export default function NavBar({ locale }: NavBarProps) {
         </nav>
 
         <div className="flex items-center gap-3">
+          <button
+            onClick={() => dispatch(toggleMobileMenu())}
+            className="text-xl md:hidden hover:text-brown-400"
+            aria-label="Toggle menu"
+          >
+            {isMobileMenuOpen ? "✕" : "☰"}
+          </button>
+
           {isSearchOpen ? (
             <form action={handleSearch} className="flex items-center gap-2">
               <input
@@ -71,6 +84,40 @@ export default function NavBar({ locale }: NavBarProps) {
           <LanguageToggle locale={locale} pathname={pathname} />
         </div>
       </div>
+
+      {isMobileMenuOpen && (
+        <nav className="border-t md:hidden border-brown-700 bg-background-brown">
+          <div className="flex flex-col max-w-6xl gap-1 px-4 py-3 mx-auto">
+            <Link
+              href={`/${locale}`}
+              className="px-3 py-2 rounded hover:bg-brown-800"
+              onClick={handleLinkClick}
+            >
+              {t("nav.home")}
+            </Link>
+
+            <div className="px-3 py-2">
+              <ServicesDropdown locale={locale} />
+            </div>
+
+            <Link
+              href={`/${locale}/#team`}
+              className="px-3 py-2 rounded hover:bg-brown-800"
+              onClick={handleLinkClick}
+            >
+              {t("nav.team")}
+            </Link>
+
+            <Link
+              href={`/${locale}/#clients`}
+              className="px-3 py-2 rounded hover:bg-brown-800"
+              onClick={handleLinkClick}
+            >
+              {t("nav.clients")}
+            </Link>
+          </div>
+        </nav>
+      )}
     </header>
   );
 }

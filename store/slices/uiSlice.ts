@@ -3,11 +3,13 @@ import { createSlice } from "@reduxjs/toolkit";
 interface UIState {
   isSearchOpen: boolean;
   isServicesDropdownOpen: boolean;
+  isMobileMenuOpen: boolean;
 }
 
 const initialState: UIState = {
   isSearchOpen: false,
-  isServicesDropdownOpen: false
+  isServicesDropdownOpen: false,
+  isMobileMenuOpen: false
 };
 
 const uiSlice = createSlice({
@@ -25,6 +27,12 @@ const uiSlice = createSlice({
     },
     closeServicesDropdown(state) {
       state.isServicesDropdownOpen = false;
+    },
+    toggleMobileMenu(state) {
+      state.isMobileMenuOpen = !state.isMobileMenuOpen;
+    },
+    closeMobileMenu(state) {
+      state.isMobileMenuOpen = false;
     }
   }
 });
@@ -33,7 +41,9 @@ export const {
   toggleSearch,
   closeSearch,
   toggleServicesDropdown,
-  closeServicesDropdown
+  closeServicesDropdown,
+  toggleMobileMenu,
+  closeMobileMenu
 } = uiSlice.actions;
 
 export default uiSlice.reducer;

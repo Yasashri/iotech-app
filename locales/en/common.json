@@ -8,5 +8,13 @@
   "footer.subscribe": "Subscribe",
   "footer.emailPlaceholder": "Enter your email",
   "footer.success": "Subscribed successfully.",
-  "footer.error": "This email is already subscribed or an error occurred."
+  "footer.error": "This email is already subscribed or an error occurred.",
+  "footer": {
+    "emailPlaceholder": "Enter your email",
+    "subscribe": "Subscribe",
+    "success": "Successfully subscribed!",
+    "error": "Something went wrong. Please try again.",
+    "alreadySubscribed": "You are already subscribed."
+  }
 }
+

@@ -25,6 +25,8 @@ export function initI18n(locale: Locale) {
     });
 
     initialized = true;
+  } else {
+    i18n.changeLanguage(locale);
   }
   return i18n;
 }

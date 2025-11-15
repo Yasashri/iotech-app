@@ -15,11 +15,12 @@ export default function I18nProvider({
   const i18n = initI18n(locale);
 
   useEffect(() => {
+    i18n.changeLanguage(locale);
     if (typeof document !== "undefined") {
       document.documentElement.lang = locale;
       document.documentElement.dir = locale === "ar" ? "rtl" : "ltr";
     }
-  }, [locale]);
+  }, [locale, i18n]);
 
   return <I18nextProvider i18n={i18n}>{children}</I18nextProvider>;
 }

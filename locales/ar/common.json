@@ -8,5 +8,13 @@
   "footer.subscribe": "اشترك",
   "footer.emailPlaceholder": "أدخل بريدك الإلكتروني",
   "footer.success": "تم الاشتراك بنجاح.",
-  "footer.error": "هذا البريد مشترك بالفعل أو حدث خطأ."
+  "footer.error": "هذا البريد مشترك بالفعل أو حدث خطأ.",
+  "footer": {
+    "emailPlaceholder": "أدخل بريدك الإلكتروني",
+    "subscribe": "اشتراك",
+    "success": "تم الاشتراك بنجاح!",
+    "error": "حدث خطأ. الرجاء المحاولة مرة أخرى.",
+    "alreadySubscribed": "أنت مشترك بالفعل."
+  }
 }
+
