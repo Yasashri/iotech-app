@@ -55,9 +55,12 @@ export interface Client {
 
 export interface Service {
   id: number;
-    title: string;
-    slug: string;
-    shortDescription?: string;
-    content?: string;
-    heroImage?: StrapiImage;
+  title: string;
+  slug: string;
+  shortDescription?: string;
+  content?: string;
+  heroImage?: {
+    id: number;
+    url: string;
+  };
 }
