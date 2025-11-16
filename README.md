@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+O-TEC Frontend
 
-## Getting Started
+Multilingual Next.js 16 App Router frontend for Strapi v5 Headless CMS
 
-First, run the development server:
+This application provides a fully responsive, Arabic/English website using data fetched dynamically from Strapi v5.
+Features include hero slider, services pages, team carousel, clients section, global search, RTL support, and newsletter subscription.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+🧩 Tech Stack
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Next.js 14 (App Router)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+TypeScript
+Tailwind CSS
+Redux Toolkit
+React-i18next (EN/AR with RTL support)
+Formik + Yup
+Strapi v5 REST API
+Node 20LTS
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+⚙️ Environment Variables
 
-## Learn More
+Create a .env.local file:
 
-To learn more about Next.js, take a look at the following resources:
+NEXT_PUBLIC_STRAPI_URL=http://localhost:1337
+NEXT_PUBLIC_CMS_URL=http://localhost:1337 // Replace these
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+🌍 Internationalization (i18n)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+EN / AR support
+RTL auto-switching for Arabic
+Cached initialization to avoid re-renders
+Translations loaded from /locales/*
 
-## Deploy on Vercel
+🎨 UI Features
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Responsive design (mobile ✔ tablet ✔ desktop ✔)
+Tailwind custom theme colors (brown, background, navbar)
+Hero image/video slider
+Team carousel
+Service pages with dynamic CMS content
+Global search (Teams + Services)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Thank you 😊
