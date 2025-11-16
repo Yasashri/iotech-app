@@ -2,6 +2,7 @@
 
 "use client";
 
+import { useEffect } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useTranslation } from "react-i18next";
@@ -10,17 +11,18 @@ import { toast } from "react-toastify";
 
 import type { Locale } from "@/store/slices/languageSlice";
 
-const schema = Yup.object({
-  email: Yup.string().email("Invalid email").required("Required")
-});
-
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default function SubscriptionForm({ locale }: { locale: Locale }) {
   const { t } = useTranslation("common");
-
+  const schema = Yup.object({
+    email: Yup.string().email("Invalid email").required(t("footer.require")),
+  });
   const formik = useFormik({
     initialValues: { email: "" },
     validationSchema: schema,
+    // 👉 only validate when user clicks the button (on submit)
+    validateOnBlur: false,
+    validateOnChange: false,
     onSubmit: async (values, helpers) => {
       helpers.setStatus(undefined);
 
@@ -38,35 +40,41 @@ export default function SubscriptionForm({ locale }: { locale: Locale }) {
       } finally {
         helpers.setSubmitting(false);
       }
-    }
+    },
   });
 
+  // 👉 Show toast only after a submit attempt, if email is invalid
+  useEffect(() => {
+    if (formik.submitCount > 0 && formik.errors.email) {
+      toast.error(formik.errors.email);
+    }
+  }, [formik.submitCount, formik.errors.email]);
+
   return (
-    <form onSubmit={formik.handleSubmit} className="w-full space-y-2">
+    <form onSubmit={formik.handleSubmit} className='w-full space-y-2'>
+      {/* Inline error removed: we handle errors via toast now */}
+
       {/* Email + Subscribe in one pill */}
-      <div className="flex flex-col overflow-hidden bg-white border-2 border-white rounded-md shadow-sm sm:flex-row">
+      <div className='flex flex-col overflow-hidden bg-white border-2 border-white rounded-md shadow-sm sm:flex-row rtl:sm:flex-row-reverse'>
         <input
-          type="email"
-          name="email"
+          type='email'
+          name='email'
           onChange={formik.handleChange}
+          // onBlur can stay, but it won't trigger validation anymore
           onBlur={formik.handleBlur}
           value={formik.values.email}
           placeholder={t("footer.emailPlaceholder")}
-          className="flex-1 px-3 py-2 text-sm text-gray-900 border-none outline-none"
+          className='flex-1 px-3 py-2 text-sm text-gray-900 border-none outline-none rtl:text-right'
         />
 
         <button
-          type="submit"
+          type='submit'
           disabled={formik.isSubmitting}
-          className="px-4 py-2 text-xs font-semibold text-white bg-background-brown hover:bg-brown-700 disabled:opacity-60 whitespace-nowrap"
+          className='px-2 py-1 text-xs rounded-lg font-semibold text-white bg-background-brown hover:bg-[#b5651d] disabled:opacity-60 whitespace-nowrap hover:cursor-pointer'
         >
           {t("footer.subscribe")}
         </button>
       </div>
-
-      {formik.errors.email && formik.touched.email && (
-        <div className="text-xs text-red-400">{formik.errors.email}</div>
-      )}
     </form>
   );
 }

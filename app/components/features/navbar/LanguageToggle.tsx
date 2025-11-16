@@ -28,14 +28,14 @@ export default function LanguageToggle({ locale, pathname }: Props) {
   return (
     <div className="flex items-center gap-1 px-2 py-1 text-xs border rounded border-brown-700">
       <button
-        className={locale === "en" ? "font-bold text-brown-400" : ""}
+        className={locale === "en" ? "font-bold text-brown-400" : "hover:cursor-pointer"}
         onClick={() => switchLocale("en")}
       >
         EN
       </button>
       <span className="text-gray-500">|</span>
       <button
-        className={locale === "ar" ? "font-bold text-brown-400" : ""}
+        className={locale === "ar" ? "font-bold text-brown-400" : "hover:cursor-pointer"}
         onClick={() => switchLocale("ar")}
       >
         AR

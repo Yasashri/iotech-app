@@ -4,6 +4,7 @@
 import { useState } from "react";
 import type { Client } from "@/types/cms";
 import Image from "next/image";
+import { useTranslation } from "react-i18next";
 
 interface Props {
   clients: Client[];
@@ -30,6 +31,7 @@ function getImageUrl(client: Client): string {
 }
 
 export default function ClientsSection({ clients }: Props) {
+  const { t } = useTranslation("common");
   const [index, setIndex] = useState(0);
   if (!clients?.length) return null;
 
@@ -54,11 +56,10 @@ export default function ClientsSection({ clients }: Props) {
         {/* max-w-6xl */}
         <div className='mb-10'>
           <h2 className='text-3xl font-semibold md:text-4xl'>
-            What our clients are saying
+            {t("clients.heading")}
           </h2>
           <p className='max-w-3xl mt-3 text-sm leading-relaxed text-gray-200 md:text-base'>
-            Our clients range from individual investors, to local, international
-            as well as Fortune 500 companies.
+           {t("clients.subheading")}
           </p>
         </div>
 
@@ -80,7 +81,7 @@ export default function ClientsSection({ clients }: Props) {
           </div>
 
           {/* Text content */}
-          <div className='flex-1 mt-4 space-y-4 md:mt-0 md:ml-6'>
+          <div className='flex-1 mt-4 space-y-4 md:mt-0 md:ml-6 rtl:md:ml-0 rtl:md:mr-6'>
             <p className='text-base leading-relaxed text-gray-100 md:text-lg'>
               {/* Adjust the field name if your type uses something else
                e.g. current.quote or current.text */}
@@ -92,14 +93,15 @@ export default function ClientsSection({ clients }: Props) {
           </div>
 
           {/* Arrows */}
-          <div className='flex gap-3 mt-4 md:absolute md:bottom-6 md:right-6 md:mt-0'>
+          <div className='flex gap-3 mt-4 md:absolute md:bottom-6 md:right-6 rtl:md:right-auto rtl:md:left-6 md:mt-0'>
             <button
               type='button'
               onClick={handlePrev}
               className='flex items-center justify-center w-12 h-12 p-3 text-white transition rounded-full shadow-lg cursor-pointer hover:bg-white hover:text-black bg-white/10'
               aria-label='Previous testimonial'
             >
-              <span className='text-xl leading-none'>←</span>
+              <span className='text-xl leading-none rtl:hidden'>←</span>
+              <span className='hidden text-xl leading-none rtl:inline'>→</span>
             </button>
             <button
               type='button'
@@ -107,7 +109,8 @@ export default function ClientsSection({ clients }: Props) {
               className='flex items-center justify-center w-12 h-12 p-3 text-white transition rounded-full shadow-lg cursor-pointer hover:bg-white hover:text-black bg-white/10'
               aria-label='Next testimonial'
             >
-              <span className='text-xl leading-none'>→</span>
+              <span className='text-xl leading-none rtl:hidden'>→</span>
+              <span className='hidden text-xl leading-none rtl:inline'>←</span>
             </button>
           </div>
         </div>

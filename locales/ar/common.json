@@ -1,20 +1,34 @@
 {
   "nav.home": "الرئيسية",
+  "nav.aboutUs": "من نحن",
   "nav.services": "الخدمات",
   "nav.team": "فريقنا",
   "nav.clients": "عملاؤنا",
   "nav.searchPlaceholder": "ابحث...",
   "hero.readMore": "اقرأ المزيد",
+  "team.title": "فريقنا",
+  "team.description": "نص تجريبي يستخدم في صناعات الطباعة والتنضيد. كان هذا النص هو المعيار الصناعي منذ القرن السادس عشر.",
   "footer.subscribe": "اشترك",
   "footer.emailPlaceholder": "أدخل بريدك الإلكتروني",
   "footer.success": "تم الاشتراك بنجاح.",
   "footer.error": "هذا البريد مشترك بالفعل أو حدث خطأ.",
   "footer": {
+    "contacts": "اتصل بنا",
+    "about": "حول",
+    "ourStrategy": "استراتيجيتنا",
+    "ourAdvantages": "مزايانا",
+    "socialResponsibility": "المسؤولية الاجتماعية",
+    "ourServices": "خدماتنا",
+    "copyright": "جميع الحقوق محفوظة.",
     "emailPlaceholder": "أدخل بريدك الإلكتروني",
     "subscribe": "اشتراك",
     "success": "تم الاشتراك بنجاح!",
     "error": "حدث خطأ. الرجاء المحاولة مرة أخرى.",
-    "alreadySubscribed": "أنت مشترك بالفعل."
+    "alreadySubscribed": "أنت مشترك بالفعل.",
+    "require":"الرجاء إدخال بريدك الإلكتروني"
+  },
+  "clients": {
+    "heading": "ماذا يقول عملاؤنا",
+    "subheading": "يتراوح نطاق عملائنا من المستثمرين الأفراد إلى الشركات المحلية والدولية بالإضافة إلى شركات حظ 500"
   }
 }
-

@@ -44,7 +44,7 @@ export async function cmsFetch<T = unknown>(
   }
 
   if (!res.ok) {
-    console.error(`CMS fetch error: ${res.status} ${res.statusText}`, data);
+    /* console.error(`CMS fetch error: ${res.status} ${res.statusText}`, data); */
     throw new CMSFetchError(res.status, res.statusText, data);
   }
 

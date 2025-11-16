@@ -13,3 +13,13 @@ body {
 [dir="rtl"] {
   direction: rtl;
 }
+
+/* RTL utility classes for better browser compatibility */
+[dir="rtl"] input,
+[dir="rtl"] textarea {
+  text-align: right;
+}
+
+[dir="rtl"] * {
+  text-align: inherit;
+}

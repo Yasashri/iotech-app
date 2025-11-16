@@ -73,7 +73,7 @@ export default function ServicesDropdown({ locale }: Props) {
         </button>
 
         {isOpen && (
-          <div className='absolute left-0 z-40 w-56 pt-2 bg-background-brown'>
+          <div className='absolute left-0 rtl:left-auto rtl:right-0 z-40 w-56 pt-2 bg-background-brown'>
             <div className='text-sm rounded shadow-lg bg-brown-700'>
               <ul className='py-2 overflow-auto max-h-80'>
                 {services
@@ -103,14 +103,14 @@ export default function ServicesDropdown({ locale }: Props) {
       <div className='md:hidden'>
         <button
           type='button'
-          className='w-full text-left hover:text-brown-400'
+          className='w-full text-left rtl:text-right hover:text-brown-400'
           onClick={() => setIsMobileExpanded(!isMobileExpanded)}
         >
           {t("nav.services")} {isMobileExpanded ? "▲" : "▼"}
         </button>
 
         {isMobileExpanded && (
-          <div className='mt-2 ml-4'>
+          <div className='mt-2 ml-4 rtl:ml-0 rtl:mr-4'>
             <ul className='space-y-1'>
               {services
                 .filter((s) => !!s?.slug)

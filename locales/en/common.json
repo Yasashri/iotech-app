@@ -1,20 +1,34 @@
 {
   "nav.home": "Home",
+  "nav.aboutUs": "About Us",
   "nav.services": "Services",
   "nav.team": "Our Team",
   "nav.clients": "Clients",
   "nav.searchPlaceholder": "Search...",
   "hero.readMore": "Read more",
+  "team.title": "Our Team",
+  "team.description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
   "footer.subscribe": "Subscribe",
   "footer.emailPlaceholder": "Enter your email",
   "footer.success": "Subscribed successfully.",
   "footer.error": "This email is already subscribed or an error occurred.",
   "footer": {
+    "contacts": "Contacts",
+    "about": "About",
+    "ourStrategy": "Our Strategy",
+    "ourAdvantages": "Our Advantages",
+    "socialResponsibility": "Social Responsibility",
+    "ourServices": "Our Services",
+    "copyright": "All rights reserved.",
     "emailPlaceholder": "Enter your email",
     "subscribe": "Subscribe",
     "success": "Successfully subscribed!",
     "error": "Something went wrong. Please try again.",
-    "alreadySubscribed": "You are already subscribed."
+    "alreadySubscribed": "You are already subscribed.",
+    "require":"Please enter your email"
+  },
+  "clients": {
+    "heading": "What our clients are saying",
+    "subheading": "Our clients range from individual investors, to local, international as well as Fortune 500 companies"
   }
 }
-
