@@ -12,7 +12,7 @@ export default function Footer({ locale }: { locale: Locale }) {
   return (
     <footer className='mt-10 text-white bg-background-brown'>
       <div className='max-w-6xl px-4 py-8 mx-auto space-y-8'>
-        {/* Top row: subscription + contacts + social icons */}
+        {/* subscription + contacts + social icons */}
         <div className='flex flex-col gap-8 md:flex-row md:items-end md:justify-end'>
           {/* Subscription form */}
           <div className='w-full md:max-w-md'>
@@ -54,7 +54,7 @@ export default function Footer({ locale }: { locale: Locale }) {
         {/* Divider line */}
         <div className='border-t border-brown-500' />
 
-        {/* Bottom row: nav links + copyright */}
+        {/*nav links + copyright */}
         <div className='flex flex-col items-center justify-between gap-4 pt-2 text-sm md:flex-row md:items-center'>
           <nav className='flex flex-wrap justify-center gap-3 text-center rtl:text-right md:justify-start rtl:md:justify-end'>
             <a

@@ -93,7 +93,6 @@ export default function NavBar({ locale }: NavBarProps) {
         </nav>
 
         <div className="flex items-center gap-3">
-          {/* Mobile menu toggle */}
           <button
             onClick={() => dispatch(toggleMobileMenu())}
             className="text-xl md:hidden hover:text-brown-400"
@@ -101,8 +100,6 @@ export default function NavBar({ locale }: NavBarProps) {
           >
             {isMobileMenuOpen ? "✕" : "☰"}
           </button>
-
-          {/* Search: icon + animated expanding input */}
           <form
             action={handleSearch}
             className="relative flex items-center gap-1 group"
@@ -135,7 +132,7 @@ export default function NavBar({ locale }: NavBarProps) {
         </div>
       </div>
 
-      {/* MOBILE MENU – overlays hero instead of pushing it down */}
+      {/* MOBILE MENU */}
       {isMobileMenuOpen && (
         <nav
           className="

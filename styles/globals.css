@@ -4,17 +4,15 @@ body {
   @apply text-black bg-white;
 }
 @theme {
-  --color-background: #ffffff;        /* gives you bg-background */
-  --color-background-brown: #4B2615;  /* gives you bg-background-brown */
-  --color-navbar: #4B2615;            /* gives you bg-navbar */
+  --color-background: #ffffff;       
+  --color-background-brown: #4B2615;  
+  --color-navbar: #4B2615;           
 }
 
-/* Basic RTL helper if needed */
 [dir="rtl"] {
   direction: rtl;
 }
 
-/* RTL utility classes for better browser compatibility */
 [dir="rtl"] input,
 [dir="rtl"] textarea {
   text-align: right;

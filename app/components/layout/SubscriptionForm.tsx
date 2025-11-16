@@ -20,7 +20,6 @@ export default function SubscriptionForm({ locale }: { locale: Locale }) {
   const formik = useFormik({
     initialValues: { email: "" },
     validationSchema: schema,
-    // 👉 only validate when user clicks the button (on submit)
     validateOnBlur: false,
     validateOnChange: false,
     onSubmit: async (values, helpers) => {
@@ -43,7 +42,6 @@ export default function SubscriptionForm({ locale }: { locale: Locale }) {
     },
   });
 
-  // 👉 Show toast only after a submit attempt, if email is invalid
   useEffect(() => {
     if (formik.submitCount > 0 && formik.errors.email) {
       toast.error(formik.errors.email);
@@ -52,15 +50,11 @@ export default function SubscriptionForm({ locale }: { locale: Locale }) {
 
   return (
     <form onSubmit={formik.handleSubmit} className='w-full space-y-2'>
-      {/* Inline error removed: we handle errors via toast now */}
-
-      {/* Email + Subscribe in one pill */}
       <div className='flex flex-col overflow-hidden bg-white border-2 border-white rounded-md shadow-sm sm:flex-row rtl:sm:flex-row-reverse'>
         <input
           type='email'
           name='email'
           onChange={formik.handleChange}
-          // onBlur can stay, but it won't trigger validation anymore
           onBlur={formik.handleBlur}
           value={formik.values.email}
           placeholder={t("footer.emailPlaceholder")}

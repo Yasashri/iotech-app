@@ -14,15 +14,12 @@ const STRAPI_URL =
   process.env.NEXT_PUBLIC_STRAPI_URL || "http://localhost:1337";
 
 function getImageUrl(client: Client): string {
-  // Try a few common Strapi v4/v5 shapes safely
   const logo: any = client.logo;
 
   const rawUrl =
     logo?.url ?? logo?.data?.url ?? logo?.data?.attributes?.url ?? "";
 
   if (!rawUrl) return "";
-
-  // If Strapi already returns an absolute URL, just use it
   if (typeof rawUrl === "string" && rawUrl.startsWith("http")) {
     return rawUrl;
   }
@@ -53,7 +50,6 @@ export default function ClientsSection({ clients }: Props) {
         id='clients'
         className='max-w-6xl px-4 mx-auto text-white py-14 bg-background-brown'
       >
-        {/* max-w-6xl */}
         <div className='mb-10'>
           <h2 className='text-3xl font-semibold md:text-4xl'>
             {t("clients.heading")}
@@ -83,8 +79,6 @@ export default function ClientsSection({ clients }: Props) {
           {/* Text content */}
           <div className='flex-1 mt-4 space-y-4 md:mt-0 md:ml-6 rtl:md:ml-0 rtl:md:mr-6'>
             <p className='text-base leading-relaxed text-gray-100 md:text-lg'>
-              {/* Adjust the field name if your type uses something else
-               e.g. current.quote or current.text */}
               {current.testimonial && <>“{current.testimonial}”</>}
             </p>
             <div className='space-y-1'>

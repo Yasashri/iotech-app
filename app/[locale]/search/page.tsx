@@ -24,8 +24,8 @@ interface Pagination {
   total: number;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 interface StrapiResponse<T> {
-  // data can be either Strapi-style or already flattened, so keep it as any[]
   data: any[];
   meta?: {
     pagination?: Pagination;
@@ -44,7 +44,6 @@ interface TeamAttributes {
 }
 
 export default async function SearchPage({ params, searchParams }: PageProps) {
-  // Unwrap dynamic APIs (Next newer versions)
   const { locale } = await params;
   const { query: rawQuery = "", page: rawPage = "1" } = await searchParams;
 
@@ -74,7 +73,6 @@ export default async function SearchPage({ params, searchParams }: PageProps) {
   const servicesRaw = servicesRes?.data ?? [];
   const teamsRaw = teamsRes?.data ?? [];
 
-  // 🔹 Normalizers handle both `{ id, attributes: {...} }` and `{ id, ... }`
   const normalizeService = (item: any): (ServiceAttributes & { id?: number }) | null => {
     if (!item) return null;
     const base = item.attributes ?? item;

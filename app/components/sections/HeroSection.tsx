@@ -73,10 +73,9 @@ export default function HeroSection({ slides }: Props) {
           : undefined
       }
     >
-      {/* Gradient overlay like screenshot */}
       <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-black/10" />
 
-      {/* Left side: arrows + dots */}
+      {/*  arrows + dots */}
       <div className="absolute z-20 flex flex-col items-center hidden gap-4 -translate-y-1/2 left-6 rtl:left-auto rtl:right-6 top-1/2 md:block">
         {/* Prev arrow */}
         <button
