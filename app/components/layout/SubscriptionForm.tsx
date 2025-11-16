@@ -70,7 +70,7 @@ export default function SubscriptionForm({ locale }: { locale: Locale }) {
         <button
           type='submit'
           disabled={formik.isSubmitting}
-          className='px-2 py-1 text-xs rounded-lg font-semibold text-white bg-background-brown hover:bg-[#b5651d] disabled:opacity-60 whitespace-nowrap hover:cursor-pointer'
+          className='px-2 py-1 text-xs rounded-lg font-semibold h-15 mt-2.5 md:mt-0 md:h-10 md:w-20 text-white bg-background-brown hover:bg-[#b5651d] disabled:opacity-60 whitespace-nowrap hover:cursor-pointer'
         >
           {t("footer.subscribe")}
         </button>

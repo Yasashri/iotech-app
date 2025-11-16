@@ -9,7 +9,7 @@ interface SearchParams {
 }
 
 export async function searchServices(params: SearchParams) {
-  const { locale, page = 1, pageSize = 9, query = "" } = params;
+  const { locale, page = 1, pageSize = 4, query = "" } = params;
   
   return cmsFetch(
     `/api/services?populate=*&locale=${locale}&pagination[page]=${page}&pagination[pageSize]=${pageSize}&filters[title][$containsi]=${encodeURIComponent(
