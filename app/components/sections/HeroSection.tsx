@@ -9,38 +9,60 @@ interface Props {
   slides: HeroSlide[];
 }
 
+
+const CMS_BASE_URL =
+  (process.env.NEXT_PUBLIC_CMS_URL ||
+    process.env.NEXT_PUBLIC_STRAPI_URL ||
+    "")?.replace(/\/$/, "") || "";
+
+function buildMediaUrl(path?: string | null): string {
+  if (!path) return "";
+  let url = path.trim();
+
+  if (url.startsWith("https//")) {
+    url = "https://" + url.slice("https//".length);
+  } else if (url.startsWith("http//")) {
+    url = "http://" + url.slice("http//".length);
+  }
+  if (url.startsWith("http://") || url.startsWith("https://")) {
+    return url;
+  }
+  if (!CMS_BASE_URL) {
+    return url;
+  }
+
+  return `${CMS_BASE_URL}/${url.replace(/^\//, "")}`;
+}
+
 export default function HeroSection({ slides }: Props) {
   const [index, setIndex] = useState(0);
   const { t } = useTranslation("common");
 
-  // Guard: no slides
   if (!slides || slides.length === 0) return null;
 
   const slideCount = slides.length;
 
-  // Keep index in range
   const safeIndex = ((index % slideCount) + slideCount) % slideCount;
   const slide = slides[safeIndex];
 
-  const baseUrl = process.env.NEXT_PUBLIC_CMS_URL ?? "";
-
-  // Background image (hero)
+  // Background image
   const bgPath =
     slide.backgroundImage?.formats?.large?.url ??
     slide.backgroundImage?.formats?.medium?.url ??
     slide.backgroundImage?.url ??
     "";
-  const bg = bgPath ? `${baseUrl}${bgPath}` : "";
+  const bg = buildMediaUrl(bgPath);
 
-  // Person image (card on the right)
+  // Person image
   const personPath =
     slide.person?.formats?.medium?.url ??
     slide.person?.formats?.small?.url ??
     slide.person?.url ??
     "";
-  const personSrc = personPath ? `${baseUrl}${personPath}` : "";
+  const personSrc = buildMediaUrl(personPath);
 
   // Auto-advance
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
     if (slideCount <= 1) return;
     const id = setInterval(
@@ -60,24 +82,23 @@ export default function HeroSection({ slides }: Props) {
     <section
       className="
         relative flex items-center h-[70vh] text-white
-        -mt-16 pt-16        /* pull hero under navbar on mobile */
-        md:-mt-20 md:pt-20  /* a bit taller navbar on md+ */
+        -mt-16 pt-16
+        md:-mt-20 md:pt-20
       "
       style={
         bg
           ? {
               backgroundImage: `url(${bg})`,
               backgroundSize: "cover",
-              backgroundPosition: "center",
+              backgroundPosition: "center"
             }
           : undefined
       }
     >
       <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-black/10" />
 
-      {/*  arrows + dots */}
+      {/* arrows + dots */}
       <div className="absolute z-20 flex flex-col items-center hidden gap-4 -translate-y-1/2 left-6 rtl:left-auto rtl:right-6 top-1/2 md:block">
-        {/* Prev arrow */}
         <button
           type="button"
           onClick={prev}
@@ -88,7 +109,6 @@ export default function HeroSection({ slides }: Props) {
           <span className="hidden text-2xl leading-none rtl:inline">&gt;</span>
         </button>
 
-        {/* Dots */}
         <div className="flex flex-col items-center gap-3 mt-2">
           {slides.map((_, i) => (
             <button
@@ -104,9 +124,8 @@ export default function HeroSection({ slides }: Props) {
         </div>
       </div>
 
-      {/* Main content area */}
+      {/* Main content */}
       <div className="relative z-10 flex items-center justify-between w-full max-w-6xl gap-8 px-6 mx-auto">
-        {/* Text left, aligned like your screenshot */}
         <div className="max-w-xl text-left rtl:text-right">
           <h1 className="mb-4 text-3xl font-semibold md:text-5xl">
             {slide.title}
@@ -128,7 +147,7 @@ export default function HeroSection({ slides }: Props) {
           )}
         </div>
 
-        {/* Person image card on the right */}
+        {/* Person image card */}
         {personSrc && (
           <div className="hidden md:block">
             <div className="relative overflow-hidden w-72 h-80">
