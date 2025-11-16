@@ -1,6 +1,6 @@
 O-TEC Frontend
 
-live demo - https://io-task.yasashrimedagedara.com/
+live demo - https://iotech-app.vercel.app/
 
 Multilingual Next.js 16 App Router frontend for Strapi v5 Headless CMS
 
