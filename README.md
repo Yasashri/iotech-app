@@ -1,5 +1,7 @@
 O-TEC Frontend
 
+live demo - https://io-task.yasashrimedagedara.com/
+
 Multilingual Next.js 16 App Router frontend for Strapi v5 Headless CMS
 
 This application provides a fully responsive, Arabic/English website using data fetched dynamically from Strapi v5.
