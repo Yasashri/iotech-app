@@ -1,10 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-type Tab = "services" | "teams";
+export type SearchTab = "services" | "teams";
 
 interface SearchState {
   query: string;
-  activeTab: Tab;
+  activeTab: SearchTab;
   currentPage: number;
 }
 
@@ -22,7 +22,7 @@ const searchSlice = createSlice({
       state.query = action.payload;
       state.currentPage = 1;
     },
-    setActiveTab(state, action: PayloadAction<Tab>) {
+    setActiveTab(state, action: PayloadAction<SearchTab>) {
       state.activeTab = action.payload;
       state.currentPage = 1;
     },

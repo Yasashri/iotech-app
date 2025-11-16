@@ -1,10 +1,23 @@
 @import "tailwindcss";
 
 body {
-  @apply bg-background text-white;
+  @apply text-black bg-white;
+}
+@theme {
+  --color-background: #ffffff;       
+  --color-background-brown: #4B2615;  
+  --color-navbar: #4B2615;           
 }
 
-/* Basic RTL helper if needed */
 [dir="rtl"] {
   direction: rtl;
+}
+
+[dir="rtl"] input,
+[dir="rtl"] textarea {
+  text-align: right;
+}
+
+[dir="rtl"] * {
+  text-align: inherit;
 }

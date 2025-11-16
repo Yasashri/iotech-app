@@ -1,4 +1,4 @@
-import "./globals.css";
+import "../styles/globals.css";
 import type { Metadata } from "next";
 import ReduxProvider from "@/app/components/providers/ReduxProvider";
 
@@ -13,8 +13,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className="text-white bg-background">
+    <html lang="en" suppressHydrationWarning>
+      <body className="text-white bg-background" suppressHydrationWarning>
         <ReduxProvider>{children}</ReduxProvider>
       </body>
     </html>
