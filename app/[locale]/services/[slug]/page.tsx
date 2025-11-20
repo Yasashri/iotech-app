@@ -5,7 +5,6 @@ import type { Service } from "@/types/cms";
 import type { Locale } from "@/store/slices/languageSlice";
 import Image from "next/image";
 
-// ---------- HELPER: RICH TEXT RENDERER ----------
 function renderContent(content: unknown) {
   if (!content) {
     return (
@@ -15,7 +14,6 @@ function renderContent(content: unknown) {
     );
   }
 
-  // Case 1: classic rich text HTML string
   if (typeof content === "string") {
     return (
       <div
@@ -25,7 +23,6 @@ function renderContent(content: unknown) {
     );
   }
 
-  // Case 2: Strapi v5 blocks (array of objects)
   if (Array.isArray(content)) {
     return (
       <div className="space-y-4 prose prose-invert max-w-none">
@@ -41,7 +38,6 @@ function renderContent(content: unknown) {
 
             case "heading": {
               const level = block.level ?? 2;
-              // avoid JSX namespace types, just let this be "any"
               const Tag: any = `h${level}`;
               return <Tag key={i}>{childrenText}</Tag>;
             }
@@ -69,10 +65,7 @@ function renderContent(content: unknown) {
               );
             }
 
-            // You can add more block types (code, image, etc.) here
-
             default:
-              // Fallback: show text if available, otherwise JSON
               if (childrenText) {
                 return <p key={i}>{childrenText}</p>;
               }
@@ -86,16 +79,12 @@ function renderContent(content: unknown) {
       </div>
     );
   }
-
-  // Case 3: some other object → show stringified for now
   return (
     <pre className="text-xs opacity-60">
       {JSON.stringify(content, null, 2)}
     </pre>
   );
 }
-
-// Next 16: params is a Promise → must await
 export async function generateMetadata(props: {
   params: Promise<{ locale: string; slug: string }>;
 }) {
@@ -133,15 +122,11 @@ export default async function ServicePage(props: {
   }
 
   const typedLocale = locale as Locale;
-
-  // Fetch service by slug
   const service: Service | null = await getServiceBySlug(typedLocale, slug);
 
   if (!service) {
     notFound();
   }
-
-  // ---- HERO IMAGE URL ----
   const rawHeroUrl = service.heroImage?.url ?? "";
   const STRAPI_BASE_URL =
     process.env.NEXT_PUBLIC_STRAPI_URL || "http://localhost:1337";
@@ -158,7 +143,6 @@ export default async function ServicePage(props: {
 
   return (
     <article className="max-w-4xl px-4 py-10 mx-auto">
-      {/* HERO IMAGE */}
       {heroImgSrc && (
         <div className="relative w-full h-64 mb-6 overflow-hidden border rounded-lg border-brown-700">
           <Image
@@ -170,16 +154,10 @@ export default async function ServicePage(props: {
           />
         </div>
       )}
-
-      {/* TITLE */}
       <h1 className="mb-4 text-3xl font-semibold">{service.title}</h1>
-
-      {/* SHORT DESCRIPTION */}
       {service.shortDescription && (
         <p className="mb-6 text-gray-300">{service.shortDescription}</p>
       )}
-
-      {/* RICH CONTENT */}
       {renderContent(service.content)}
     </article>
   );
